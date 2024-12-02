@@ -1,0 +1,16 @@
+const hre = require("hardhat");
+
+async function main() {
+  const SecurityTokenAddress = "0x..."; // Replace with your deployed ERC1400 token address
+  const RedemptionETF = await hre.ethers.getContractFactory("RedemptionETF");
+  const redemptionContract = await RedemptionETF.deploy(SecurityTokenAddress);
+  await redemptionContract.deployed();
+  console.log("Redemption Contract deployed to:", redemptionContract.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

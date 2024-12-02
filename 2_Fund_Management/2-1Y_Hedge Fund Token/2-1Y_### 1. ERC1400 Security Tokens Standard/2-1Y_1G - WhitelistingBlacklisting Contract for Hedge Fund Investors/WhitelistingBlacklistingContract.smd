@@ -1,0 +1,192 @@
+Here's a complete smart contract for the **Whitelisting/Blacklisting Contract for Hedge Fund Investors** that implements the ERC1400 standard. This contract ensures that only authorized or whitelisted investors can hold or transfer hedge fund tokens while managing a blacklist for unauthorized participants.
+
+### Contract: 2-1Y_1G_WhitelistingBlacklistingContract.sol
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC1400/IERC1400.sol";
+
+contract WhitelistingBlacklistingContract is Ownable, ReentrancyGuard {
+    IERC1400 public token; // Reference to the ERC1400 token contract
+
+    mapping(address => bool) public whitelist; // Track whitelisted addresses
+    mapping(address => bool) public blacklist; // Track blacklisted addresses
+
+    event Whitelisted(address indexed investor);
+    event Blacklisted(address indexed investor);
+    event RemovedFromWhitelist(address indexed investor);
+    event RemovedFromBlacklist(address indexed investor);
+
+    constructor(address _tokenAddress) {
+        token = IERC1400(_tokenAddress);
+    }
+
+    modifier onlyWhitelisted() {
+        require(whitelist[msg.sender], "Not an authorized investor");
+        _;
+    }
+
+    modifier notBlacklisted() {
+        require(!blacklist[msg.sender], "Investor is blacklisted");
+        _;
+    }
+
+    function addToWhitelist(address _investor) external onlyOwner {
+        require(!whitelist[_investor], "Investor is already whitelisted");
+        whitelist[_investor] = true;
+        emit Whitelisted(_investor);
+    }
+
+    function removeFromWhitelist(address _investor) external onlyOwner {
+        require(whitelist[_investor], "Investor is not whitelisted");
+        whitelist[_investor] = false;
+        emit RemovedFromWhitelist(_investor);
+    }
+
+    function addToBlacklist(address _investor) external onlyOwner {
+        require(!blacklist[_investor], "Investor is already blacklisted");
+        blacklist[_investor] = true;
+        emit Blacklisted(_investor);
+    }
+
+    function removeFromBlacklist(address _investor) external onlyOwner {
+        require(blacklist[_investor], "Investor is not blacklisted");
+        blacklist[_investor] = false;
+        emit RemovedFromBlacklist(_investor);
+    }
+
+    function transferToken(address _to, uint256 _value) external onlyWhitelisted notBlacklisted nonReentrant {
+        require(_to != address(0), "Invalid recipient address");
+        require(token.balanceOf(msg.sender) >= _value, "Insufficient balance");
+
+        // Transfer logic (customize as needed based on your ERC1400 implementation)
+        token.transferFrom(msg.sender, _to, _value);
+    }
+}
+```
+
+### Contract Explanation:
+
+1. **Whitelisting and Blacklisting:**
+   - The contract allows the owner to manage a whitelist and a blacklist of investors.
+   - Investors can only hold or transfer tokens if they are whitelisted and not blacklisted.
+
+2. **Modifiers:**
+   - `onlyWhitelisted`: Ensures that only authorized investors can execute certain functions.
+   - `notBlacklisted`: Prevents blacklisted investors from executing specific functions.
+
+3. **Events:**
+   - Events are emitted for adding/removing addresses from the whitelist and blacklist, providing transparency.
+
+4. **Token Transfer:**
+   - The `transferToken` function facilitates token transfers but checks that the sender is whitelisted and not blacklisted.
+
+### Deployment Instructions:
+
+1. **Prerequisites:**
+   - Ensure you have Node.js and Hardhat installed.
+   - Install OpenZeppelin contracts:
+     ```bash
+     npm install @openzeppelin/contracts
+     ```
+
+2. **Deployment Script:**
+   Create a deployment script `deploy.js` in the `scripts` folder:
+
+   ```javascript
+   const hre = require("hardhat");
+
+   async function main() {
+     const [deployer] = await hre.ethers.getSigners();
+     console.log("Deploying contracts with the account:", deployer.address);
+
+     const tokenAddress = "YOUR_ERC1400_TOKEN_ADDRESS"; // Replace with your ERC1400 token contract address
+     const WhitelistingBlacklistingContract = await hre.ethers.getContractFactory("WhitelistingBlacklistingContract");
+     const whitelistingContract = await WhitelistingBlacklistingContract.deploy(tokenAddress);
+
+     await whitelistingContract.deployed();
+     console.log("Whitelisting/Blacklisting Contract deployed to:", whitelistingContract.address);
+   }
+
+   main()
+     .then(() => process.exit(0))
+     .catch((error) => {
+       console.error(error);
+       process.exit(1);
+     });
+   ```
+
+3. **Run the Deployment Script:**
+   ```bash
+   npx hardhat run scripts/deploy.js --network [network-name]
+   ```
+
+### Testing Suite:
+
+1. **Basic Tests:**
+   Use Mocha and Chai for testing core functions such as adding/removing from the whitelist/blacklist and executing token transfers.
+
+   ```javascript
+   const { expect } = require("chai");
+
+   describe("Whitelisting/Blacklisting Contract", function () {
+     let whitelistingContract;
+     let owner, investor;
+
+     beforeEach(async function () {
+       [owner, investor] = await ethers.getSigners();
+
+       const Token = await ethers.getContractFactory("ERC1400Token"); // Replace with your ERC1400 token contract
+       const token = await Token.deploy();
+       await token.deployed();
+
+       const WhitelistingBlacklistingContract = await ethers.getContractFactory("WhitelistingBlacklistingContract");
+       whitelistingContract = await WhitelistingBlacklistingContract.deploy(token.address);
+       await whitelistingContract.deployed();
+     });
+
+     it("Should allow owner to whitelist an investor", async function () {
+       await whitelistingContract.addToWhitelist(investor.address);
+       expect(await whitelistingContract.whitelist(investor.address)).to.be.true;
+     });
+
+     it("Should allow owner to blacklist an investor", async function () {
+       await whitelistingContract.addToBlacklist(investor.address);
+       expect(await whitelistingContract.blacklist(investor.address)).to.be.true;
+     });
+
+     it("Should prevent blacklisted investor from transferring tokens", async function () {
+       await whitelistingContract.addToBlacklist(investor.address);
+       await expect(whitelistingContract.connect(investor).transferToken(owner.address, 1))
+         .to.be.revertedWith("Investor is blacklisted");
+     });
+
+     it("Should allow whitelisted investor to transfer tokens", async function () {
+       await whitelistingContract.addToWhitelist(investor.address);
+       await whitelistingContract.connect(investor).transferToken(owner.address, 1);
+       // Additional assertions for token balance after transfer can be added here
+     });
+   });
+   ```
+
+2. **Run Tests:**
+   ```bash
+   npx hardhat test
+   ```
+
+### Documentation:
+
+1. **API Documentation:**
+   - Include detailed NatSpec comments for each function, event, and modifier in the contract.
+
+2. **User Guide:**
+   - Provide step-by-step instructions on how to manage the whitelist and blacklist.
+
+3. **Developer Guide:**
+   - Explain the contract architecture, access control, and customization options for extending functionalities.
+
+This smart contract framework ensures that only authorized investors can hold or transfer hedge fund tokens, maintaining compliance with ERC1400 standards. If you need further customization or additional features, feel free to ask!

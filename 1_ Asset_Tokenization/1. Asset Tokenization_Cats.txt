@@ -1,0 +1,419 @@
+1. Asset Tokenization Contracts
+
+1-1X_Security Token Contracts: Smart contracts to represent traditional securities like stocks, bonds, and real estate on the blockchain.
+
+1-1Y_Real Asset Tokenization Contracts: Contracts for tokenizing physical assets such as property, commodities, and other tangible investments.
+
+1-1Z_Equity Token Contracts: Smart contracts for issuing, managing, and trading equity tokens, representing shares in a company.
+
+------------------------------
+
+1-1X_Security Token Contracts: Smart contracts to represent traditional securities like stocks, bonds, and real estate on the blockchain.
+
+1-1X_### **1. ERC1400: Security Tokens Standard**
+ERC1400 is the primary standard for representing and managing security tokens that comply with regulatory requirements.
+
+1-1X_1A - **Security Token Issuance Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Facilitates the creation of security tokens that represent traditional assets like stocks and bonds. This contract ensures compliance with regulations during the issuance process.
+
+1-1X_1B - **Transfer Restrictions Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Implements restrictions on token transfers, ensuring that only compliant and authorized entities can trade security tokens. Useful for maintaining regulatory control over the tokens.
+
+1-1X_1C - **Lock-Up Period Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Enforces lock-up periods, where tokens cannot be transferred or sold for a specified period. This is often used for early investors or company insiders after an issuance.
+
+1-1X_1D - **Vesting Schedule Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Manages the release of tokens over time, typically used for employee incentives, founders’ shares, or other timed-based token distributions.
+
+1-1X_1E - **Token Splitting/Merging Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Enables the splitting of tokens into smaller units or the merging of smaller units into larger tokens, providing flexibility in managing token holdings.
+
+1-1X_1F - **Whitelisting/Blacklisting Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Manages lists of approved (whitelisted) and restricted (blacklisted) addresses, determining which participants are allowed or restricted from transferring or holding security tokens.
+
+1-1X_1G - **Dividend Distribution Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Automatically distributes dividends to token holders, based on their token holdings. Ideal for security tokens representing stocks or other yield-bearing assets.
+
+---
+
+1-1X_### **2. ERC1404: Restricted Token Standard**
+ERC1404 is designed to represent restricted security tokens and enforces rules regarding who can hold and transfer them.
+
+1-1X_2A - **Restricted Security Token Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: A security token contract that enforces transfer restrictions according to regulatory rules. Useful for representing stocks, bonds, and real estate that must comply with legal conditions on ownership and trading.
+
+1-1X_2B - **Investor Verification Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Verifies whether token holders meet the requirements for owning the security token, such as accredited investor status, geographical restrictions, or regulatory compliance.
+
+1-1X_2C - **Compliance Reporting Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Automatically generates compliance reports to regulators or other authorities to show that the token transactions follow legal and regulatory frameworks.
+
+1-1X_2D - **Tax Withholding Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Manages the calculation and automatic withholding of taxes on token transactions or distributions, ensuring proper tax compliance for investors.
+
+---
+
+1-1X_### **3. ERC20: Fungible Token Standard**
+Although ERC20 is primarily used for fungible tokens, it is often adapted for representing simple forms of security tokens with fewer regulatory constraints.
+
+1-1X_3A - **Utility Token Contract for Security Token Platforms**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Represents utility tokens for platform access or governance within a tokenization platform. Can also serve as security tokens for smaller, less-regulated securities.
+
+1-1X_3B - **Tokenized Bonds Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Issues tokens that represent bonds, allowing for fractional ownership and trading of traditional fixed-income securities in tokenized form.
+
+1-1X_3C - **Token Minting and Burning Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Provides functionalities for minting (creating) and burning (destroying) security tokens, often used during corporate actions like stock issuance or buybacks.
+
+---
+
+1-1X_### **4. ERC777: Advanced Fungible Token Standard**
+ERC777 adds more advanced features for fungible tokens and is used when more control and features are needed in security token contracts.
+
+1-1X_4A - **Advanced Security Token Contract**  
+  **ERC Standard**: ERC777  
+  **Use Case**: An advanced security token with enhanced functionality like token minting and operator permissions, giving issuers greater control over token movements and actions.
+
+1-1X_4B - **Operator Control Contract**  
+  **ERC Standard**: ERC777  
+  **Use Case**: Allows an authorized operator to manage and execute transactions on behalf of the security token holders, which is particularly useful in regulated security token platforms.
+
+---
+
+1-1X_### **5. ERC721: Non-Fungible Token Standard**
+ERC721 is primarily used for non-fungible tokens (NFTs), but in security token platforms, it is useful for tokenizing unique assets like real estate or single-ownership shares.
+
+1-1X_5A - **Real Estate Tokenization Contract**  
+  **ERC Standard**: ERC721  
+  **Use Case**: Tokenizes individual real estate properties as unique, non-fungible tokens. Each ERC721 token represents a specific property or a unique share of that property.
+
+1-1X_5B - **Unique Asset Token Contract**  
+  **ERC Standard**: ERC721  
+  **Use Case**: Represents ownership of unique assets like artwork, intellectual property, or collectibles on a blockchain, making them tradable in a decentralized marketplace.
+
+---
+
+1-1X_### **6. ERC998: Composable Non-Fungible Token Standard**
+ERC998 allows NFTs to own other tokens, both fungible and non-fungible, making it useful in security tokenization for managing portfolios of assets.
+
+1-1X_6A - **Composable Real Estate Portfolio Token Contract**  
+  **ERC Standard**: ERC998  
+  **Use Case**: Tokenizes a portfolio of real estate assets, allowing individual properties or asset components to be owned by a single token, which can itself own multiple ERC721 tokens (representing individual properties).
+
+1-1X_6B - **Security Token Bundling Contract**  
+  **ERC Standard**: ERC998  
+  **Use Case**: Bundles multiple security tokens or NFTs into a single composable token, simplifying the management of large portfolios of tokenized assets.
+
+---
+
+1-1X_### **7. ERC1155: Multi-Token Standard**
+ERC1155 supports multiple token types (fungible, non-fungible, or semi-fungible) within a single contract, making it ideal for platforms managing diverse types of tokenized assets.
+
+1-1X_7A - **Multi-Asset Tokenization Contract**  
+  **ERC Standard**: ERC1155  
+  **Use Case**: Tokenizes a portfolio of different types of assets—stocks, bonds, real estate, etc.—all within a single contract, facilitating efficient management and trading of various asset types on the same platform.
+
+1-1X_7B - **Batch Transfer Contract**  
+  **ERC Standard**: ERC1155  
+  **Use Case**: Enables batch transfers of multiple asset types in a single transaction, significantly reducing gas fees and increasing efficiency in high-volume trading environments.
+
+---
+
+1-1X_### **8. ERC4626: Tokenized Vault Standard**
+ERC4626 is specifically designed for tokenized vaults, making it ideal for platforms that manage pools of tokenized securities.
+
+1-1X_8A - **Tokenized Securities Vault Contract**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Represents pools of tokenized securities like stocks, bonds, and real estate, allowing investors to gain exposure to multiple tokenized assets through a single vault token.
+
+1-1X_8B - **Staking and Yield Contract for Tokenized Assets**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Allows holders of tokenized securities to stake their assets in a vault and earn yield, further adding financial utility to tokenized securities.
+
+---
+
+1-1X_### **9. AnonCreds: Privacy-Preserving Credentials**
+While not an ERC standard, AnonCreds is crucial in privacy-preserving credential issuance and verification, important for maintaining privacy in security token platforms.
+
+1-1X_9A - **Accredited Investor Verification Contract**  
+  **ERC Standard**: AnonCreds (Privacy-Preserving Credentials)  
+  **Use Case**: Verifies whether an investor meets accredited investor status without revealing sensitive personal information, ensuring both compliance and privacy.
+
+---
+
+----------------------------------------------------------------------------
+
+1-1Y_Real Asset Tokenization Contracts: Contracts for tokenizing physical assets such as property, commodities, and other tangible investments.
+
+1-1Y_### **1. ERC721: Non-Fungible Token Standard**
+ERC721 is the go-to standard for tokenizing unique physical assets like individual properties or commodities. Each token represents a unique item.
+
+1-1Y_1A - **Real Estate Tokenization Contract**  
+  **ERC Standard**: ERC721  
+  **Use Case**: Tokenizes individual real estate properties. Each ERC721 token represents a specific property, making it tradable on the blockchain while ensuring traceability and ownership.
+
+1-1Y_1B - **Physical Commodity Tokenization Contract**  
+  **ERC Standard**: ERC721  
+  **Use Case**: Represents ownership of a specific, tangible commodity, such as gold, oil, or precious metals. The token ensures traceable ownership of the physical asset stored in a secure location.
+
+1-1Y_1C - **Unique Asset Tokenization Contract**  
+  **ERC Standard**: ERC721  
+  **Use Case**: Tokenizes other unique physical assets, such as artwork, collectible cars, or luxury goods. Each token represents a distinct physical item.
+
+---
+
+1-1Y_### **2. ERC1155: Multi-Token Standard**
+ERC1155 allows for multiple types of tokens within a single contract, ideal for tokenizing portfolios of real assets that might be a combination of fungible and non-fungible items.
+
+1-1Y_2A - **Real Estate Portfolio Tokenization Contract**  
+  **ERC Standard**: ERC1155  
+  **Use Case**: Tokenizes a portfolio of real estate assets, where each token can represent either an entire property or fractional ownership in multiple properties. This allows a more efficient way to manage and trade portfolios of physical real estate assets.
+
+1-1Y_2B - **Mixed Commodity Tokenization Contract**  
+  **ERC Standard**: ERC1155  
+  **Use Case**: Tokenizes a portfolio of different commodities (e.g., gold, silver, oil) under a single contract. Each token within the contract represents a different commodity, enabling seamless trading of multiple asset types.
+
+1-1Y_2C - **Batch Transfer Contract for Real Assets**  
+  **ERC Standard**: ERC1155  
+  **Use Case**: Facilitates batch transfers of multiple real assets in a single transaction, reducing transaction costs and improving efficiency for large portfolios of tokenized real assets.
+
+---
+
+1-1Y_### **3. ERC1400: Security Tokens Standard**
+ERC1400 is ideal for tokenizing real assets that are classified as securities, ensuring compliance with regulatory requirements.
+
+1-1Y_3A - **Tokenized Real Estate Security Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Tokenizes real estate as a security, allowing for fractional ownership of the property. Investors can trade the tokens, which represent shares of the real estate, while ensuring compliance with security regulations.
+
+1-1Y_3B - **Tokenized Commodity Security Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Tokenizes commodities such as gold, oil, or natural resources as securities. This enables investors to own and trade fractions of high-value physical commodities with built-in regulatory compliance.
+
+1-1Y_3C - **Transfer Restrictions Contract for Real Assets**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Ensures that transfers of tokenized real assets can only occur between compliant and verified entities, following regulatory restrictions. Useful for maintaining control over who can own or trade tokenized physical assets.
+
+1-1Y_3D - **Dividend and Revenue Sharing Contract for Real Assets**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Distributes dividends or revenue shares generated from real assets like rental income (for real estate) or profits from commodity sales. The contract automatically calculates and distributes earnings to token holders.
+
+---
+
+1-1Y_### **4. ERC1404: Restricted Token Standard**
+ERC1404 allows for restricted transfers and is suitable for physical assets that are regulated or require specific ownership conditions.
+
+1-1Y_4A - **Restricted Real Estate Token Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Represents ownership of physical real estate with transfer restrictions based on investor qualifications or regulatory compliance. Useful for real estate investment platforms where only certain investors are allowed to participate.
+
+1-1Y_4B - **Restricted Commodity Token Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Represents ownership of physical commodities with restricted transfers. This ensures that only accredited or approved investors can trade or own tokenized commodities, maintaining compliance with local or international regulations.
+
+---
+
+1-1Y_### **5. ERC20: Fungible Token Standard**
+ERC20 is suitable for tokenizing fungible assets, particularly when representing commodities that can be divided into smaller units.
+
+1-1Y_5A - **Fungible Real Estate Tokenization Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Tokenizes fractional ownership of real estate properties, where each ERC20 token represents a proportional share in the property. This allows investors to buy, trade, or sell shares of property like stocks.
+
+1-1Y_5B - **Commodity Tokenization Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Represents divisible physical commodities like gold, silver, oil, or natural gas. Each ERC20 token represents a set amount of the commodity, making it easier for investors to trade fractional shares of high-value commodities.
+
+1-1Y_5C - **Staking and Yield Contract for Real Assets**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Allows token holders to stake their shares of real assets (such as real estate or commodities) in a smart contract and earn yield, such as rental income or commodity dividends.
+
+---
+
+1-1Y_### **6. ERC4626: Tokenized Vault Standard**
+ERC4626 is specialized for managing pools of tokenized assets, making it useful for representing baskets of real assets.
+
+1-1Y_6A - **Real Asset Vault Contract**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Tokenizes a vault that contains multiple real assets, such as property, commodities, or other tangible investments. Investors can buy and sell shares of the vault, giving them fractional ownership of the pooled assets.
+
+1-1Y_6B - **Commodity Vault Contract**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Allows for the tokenization of a vault containing various commodities. Each vault token represents a share in the collective value of the assets stored within the vault, providing diversification and easier access to a portfolio of commodities.
+
+1-1Y_6C - **Real Estate Investment Vault Contract**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Represents a pool of tokenized real estate properties where investors can buy and sell shares of the vault, earning returns based on the performance of the underlying properties.
+
+---
+
+1-1Y_### **7. ERC998: Composable Non-Fungible Token Standard**
+ERC998 allows for the composition of multiple tokens, which is useful for real assets that are made up of smaller components.
+
+1-1Y_7A - **Composable Real Estate Token Contract**  
+  **ERC Standard**: ERC998  
+  **Use Case**: Allows for the tokenization of a real estate property composed of multiple units or components (e.g., land, buildings, equipment). This enables ownership and transfer of entire property sets or individual components, depending on the use case.
+
+1-1Y_7B - **Composable Commodity Token Contract**  
+  **ERC Standard**: ERC998  
+  **Use Case**: Tokenizes bundles of commodities (e.g., a portfolio of gold, silver, and oil). Investors can own and trade either the entire bundle or individual components, providing flexibility in managing and investing in tangible assets.
+
+---
+
+1-1Y_### **8. AnonCreds: Privacy-Preserving Credentials**
+While not an ERC standard, AnonCreds is essential for ensuring privacy in ownership verification.
+
+1-1Y_8A - **Accredited Investor Verification for Real Asset Tokenization**  
+  **ERC Standard**: AnonCreds (Privacy-Preserving Credentials)  
+  **Use Case**: Verifies whether an investor meets the criteria for owning tokenized real assets, such as real estate or commodities, without revealing sensitive personal information. This ensures privacy while complying with legal requirements for accredited investors.
+
+---
+
+This comprehensive list covers the major types of contracts needed to tokenize real, tangible assets such as property and commodities, allowing for compliance, efficiency, and security across various use cases. Each ERC standard is tailored to specific types of real asset tokenization, ensuring flexibility and scalability for large-scale platforms.
+
+----------------------------------------------------------------------------
+
+1-1Z_Equity Token Contracts: Smart contracts for issuing, managing, and trading equity tokens, representing shares in a company.
+
+1-1Z_### **1. ERC1400: Security Tokens Standard**
+ERC1400 is the main standard for equity tokens, ensuring compliance with regulations and security for tokenized shares.
+
+1-1Z_1A - **Equity Token Issuance Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Facilitates the issuance of equity tokens, which represent shares in a company. These tokens comply with security regulations and allow for digital issuance and management of company shares.
+
+1-1Z_1B - **Equity Transfer Restrictions Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Imposes restrictions on equity token transfers to ensure regulatory compliance, allowing only authorized or compliant entities to trade shares.
+
+1-1Z_1C - **Equity Lock-Up Period Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Implements a lock-up period on equity tokens, during which they cannot be transferred or sold. This is useful for early investors, founders, or employees subject to lock-up agreements post-issuance.
+
+1-1Z_1D - **Equity Vesting Schedule Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Manages the vesting of equity tokens over time, particularly for employee stock options or founder shares, allowing tokens to be released according to a predefined schedule.
+
+1-1Z_1E - **Dividend Distribution Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Automatically distributes dividends to equity token holders based on their shareholdings. This contract simplifies the process of distributing profits or earnings to shareholders on the blockchain.
+
+1-1Z_1F - **Equity Whitelisting/Blacklisting Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Manages the whitelist of approved shareholders or a blacklist of restricted addresses, ensuring that only verified or compliant entities can hold and trade equity tokens.
+
+1-1Z_1G- **Corporate Action Contract**  
+  **ERC Standard**: ERC1400  
+  **Use Case**: Handles corporate actions such as stock splits, dividends, or buybacks on tokenized equity shares. This contract ensures seamless execution of corporate events for equity holders.
+
+---
+
+1-1Z_### **2. ERC1404: Restricted Token Standard**
+ERC1404 focuses on equity tokens with restricted transfers and compliance conditions.
+
+1-1Z_2A - **Restricted Equity Token Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Represents equity tokens with built-in transfer restrictions based on regulatory requirements. This is ideal for private companies issuing equity to accredited investors or entities with specific compliance needs.
+
+1-1Z_2B - **Investor Accreditation Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Verifies the accreditation status of shareholders, ensuring only accredited investors can hold or trade equity tokens. Useful for companies subject to restrictions on who can invest in their equity.
+
+1-1Z_2C- **Regulatory Compliance Reporting Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Automatically generates and sends reports to regulators showing that equity token transactions comply with relevant laws and regulations.
+
+1-1Z_2D - **Tax Withholding Contract**  
+  **ERC Standard**: ERC1404  
+  **Use Case**: Manages the automatic calculation and withholding of taxes on dividends or equity token transactions, ensuring that all tax obligations are met for both the company and shareholders.
+
+---
+
+1-1Z_### **3. ERC20: Fungible Token Standard**
+ERC20 can be adapted for equity tokenization, particularly in situations with less stringent regulatory requirements or for utility shares in DAOs.
+
+1-1Z_3A - **Basic Equity Token Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Issues fungible equity tokens that represent shares in a company. Each ERC20 token represents a fraction of ownership in the company, making them easily tradable and transferable.
+
+1-1Z_3B - **Dividend Distribution for ERC20 Equity Tokens**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Automates the distribution of dividends to ERC20 equity token holders, providing them with their proportional share of profits. This can be implemented for companies issuing utility or community shares.
+
+1-1Z_3C - **Equity Minting and Burning Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Allows companies to mint new equity tokens when issuing more shares or burn tokens during buybacks or capital reduction events, ensuring the correct representation of outstanding shares.
+
+1-1Z_3D - **Equity Token Governance Contract**  
+  **ERC Standard**: ERC20  
+  **Use Case**: Provides governance mechanisms, allowing equity token holders to vote on corporate decisions such as board elections, mergers, or policy changes. This creates a decentralized governance structure for tokenized equity.
+
+---
+
+1-1Z_### **4. ERC777: Advanced Fungible Token Standard**
+ERC777 offers advanced features for equity token issuance, such as operator permissions and enhanced control over token operations.
+
+1-1Z_4A - **Advanced Equity Token Contract**  
+  **ERC Standard**: ERC777  
+  **Use Case**: Issues equity tokens with enhanced functionality, allowing for features like authorized operators who can manage tokens on behalf of shareholders. This is useful in highly regulated industries or for larger enterprises.
+
+1-1Z_4B - **Operator Control for Equity Tokens**  
+  **ERC Standard**: ERC777  
+  **Use Case**: Allows authorized operators (such as custodians or compliance officers) to execute transactions or corporate actions on behalf of equity token holders, ensuring that transfers and other activities comply with regulatory requirements.
+
+1-1Z_4C - **Equity Token Redemption Contract**  
+  **ERC Standard**: ERC777  
+  **Use Case**: Allows shareholders to redeem their equity tokens for company assets or funds, facilitating liquidity and exit strategies for investors in tokenized equity offerings.
+
+---
+
+1-1Z_### **5. ERC4626: Tokenized Vault Standard**
+ERC4626 is useful for tokenizing pools of equity, such as a fund or vault that holds shares in multiple companies.
+
+1-1Z_5A - **Equity Vault Contract**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Tokenizes a vault or fund that holds equity in multiple companies. Investors can buy and sell shares in the vault, representing a basket of different company equities, providing diversification for shareholders.
+
+1-1Z_5B - **Staking and Yield Contract for Equity Vaults**  
+  **ERC Standard**: ERC4626  
+  **Use Case**: Allows equity token holders to stake their equity in a vault and earn yield or dividends. This is useful for equity funds or investment platforms seeking to tokenize and offer yield on portfolios of shares.
+
+---
+
+1-1Z_### **6. ERC998: Composable Non-Fungible Token Standard**
+ERC998 allows for the bundling of equity tokens and other assets into a single composable token.
+
+1-1Z_6A - **Composable Equity Token Contract**  
+  **ERC Standard**: ERC998  
+  **Use Case**: Bundles multiple equity tokens (representing shares in different companies) into a single token that can be traded or owned as a single unit. This allows for easier management of diversified equity portfolios.
+
+1-1Z_6B - **Equity Token Bundling Contract**  
+  **ERC Standard**: ERC998  
+  **Use Case**: Enables the bundling of equity tokens with other asset types, such as real estate or commodities, providing a composable token that represents multiple asset classes for investors.
+
+---
+
+1-1Z_### **7. AnonCreds: Privacy-Preserving Credentials**
+While not an ERC standard, AnonCreds can be used for privacy-preserving accreditation and compliance in equity tokenization.
+
+1-1Z_7A - **Accredited Investor Verification for Equity Tokens**  
+  **ERC Standard**: AnonCreds (Privacy-Preserving Credentials)  
+  **Use Case**: Verifies whether an investor meets the criteria to be classified as accredited without revealing sensitive personal information. This ensures privacy for investors while maintaining compliance with securities regulations for equity tokens.
+
+---
+
+This comprehensive list covers the major types of equity token contracts for issuing, managing, and trading tokenized shares in a company, ensuring compliance, governance, and dividend distribution functionalities. Each ERC standard offers tailored solutions for equity tokenization, providing a solid foundation for large-scale tokenized equity platforms.
